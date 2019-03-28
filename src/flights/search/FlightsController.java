@@ -33,8 +33,15 @@ public class FlightsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
     
+    //Search method, uses filters from UI to call the database manager and get a list of flights to display in the UI
+    public void search(){
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
-    
+    //call to sort the list by a new parameter
+    public void sortBy() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
