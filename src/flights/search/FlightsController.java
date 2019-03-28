@@ -5,6 +5,8 @@
  */
 package flights.search;
 
+import flights.database.DatabaseManager;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -18,6 +20,12 @@ import javafx.scene.control.Label;
  * @author asgei
  */
 public class FlightsController implements Initializable {
+    
+    private DatabaseManager db;
+    
+    //Stores filter values from UI that are used in Database call. Length to be decided.
+    //TODO: decide default values, and set them in initialise.
+    private String[] filters = new String[10];
     
     @FXML
     private Label label;
@@ -33,6 +41,9 @@ public class FlightsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        db = new DatabaseManager();
+        //db.getDB();
+        //db.filterDB(filters);
     }
     
     //Search method, uses filters from UI to call the database manager and get a list of flights to display in the UI
@@ -44,4 +55,5 @@ public class FlightsController implements Initializable {
     public void sortBy() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+    
 }
