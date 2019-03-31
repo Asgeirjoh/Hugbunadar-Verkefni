@@ -11,6 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
+
+import flights.search.Flight;
 
 /**
  *
@@ -36,8 +39,10 @@ public class DatabaseManager {
             Statement statement = connection.createStatement();
 
             ResultSet rs = statement.executeQuery("SELECT * FROM flights WHERE flightNumber = 'NY112'");
+            ArrayList<Flight> results = new ArrayList<>();
             while (rs.next()) {
-                System.out.println("Flight number: " + rs.getString("flightNumber"));
+                results.add(new Flight(rs.getString("flightNumber")));
+                System.out.println("Flight number: " + rs.getString("flightNumber") + "   Date: "+ rs.getString("date"));
             }
         } catch (SQLException e) {
             // if the error message is "out of memory", 
@@ -54,7 +59,7 @@ public class DatabaseManager {
             }
         }
     }
-    public void filterDB(String[] parameters) {
+    public ArrayList<Flight> filterDB(String[] parameters) {
 
         //Class.forName("org.sqlite.JDBC");
         Connection connection = null;
@@ -67,9 +72,12 @@ public class DatabaseManager {
             
             //TODO: rewrite query, add preparedstatement functionality that uses the parameters to filter the results.
             ResultSet rs = statement.executeQuery("SELECT * FROM flights WHERE flightNumber = 'NY112'");
+            ArrayList<Flight> results = new ArrayList<>();
             while (rs.next()) {
-                //System.out.println("Flight number: " + rs.getString("flightNumber"));
+                results.add(new Flight(rs.getString("flightNumber")));
+                System.out.println("Flight number: " + rs.getString("flightNumber") + "   Date: "+ rs.getString("date"));
             }
+            return results;
         } catch (SQLException e) {
             // if the error message is "out of memory", 
             // it probably means no database file is found
@@ -84,5 +92,6 @@ public class DatabaseManager {
                 System.err.println(e);
             }
         }
+        return null;
     }
 }

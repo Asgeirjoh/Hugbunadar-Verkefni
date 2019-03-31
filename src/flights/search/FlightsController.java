@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import java.util.ArrayList;
 
 /**
  *
@@ -26,6 +27,8 @@ public class FlightsController implements Initializable {
     //Stores filter values from UI that are used in Database call. Length to be decided.
     //TODO: decide default values, and set them in initialise.
     private String[] filters = new String[10];
+    
+    private ArrayList<Flight> flightList;
     
     @FXML
     private Label label;
@@ -43,11 +46,13 @@ public class FlightsController implements Initializable {
         // TODO
         db = new DatabaseManager();
         //db.getDB();
-        //db.filterDB(filters);
+        flightList = db.filterDB(filters);
+        System.out.println(flightList.get(1).getFlightNumber());
     }
     
     //Search method, uses filters from UI to call the database manager and get a list of flights to display in the UI
     public void search(){
+        //flightList = db.filterDB(filters);
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
