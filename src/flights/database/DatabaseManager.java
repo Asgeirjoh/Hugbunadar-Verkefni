@@ -69,14 +69,14 @@ public class DatabaseManager {
             
             
             //TODO: rewrite query, add preparedstatement functionality that uses the parameters to filter the results.
-            String fNumber = "NY112";
-            String firstDate = "2019-06-06";
-            String secondDate = "2019-06-08";
-            String fdepartureLocation = "Reykjavik";
-            String farrivalLocation = "Akureyri";
-            String minPrice = "0";
-            String maxPrice = "60000";
-            String stmt1 = "SELECT * FROM flights WHERE flightNumber = ? AND "
+            String fNumber = parameters[0];
+            String firstDate = parameters[1];
+            String secondDate = parameters[2];
+            String fdepartureLocation = parameters[3];
+            String farrivalLocation = parameters[4];
+            String minPrice = parameters[5];
+            String maxPrice = parameters[6];
+            String stmt1 = "SELECT * FROM flights WHERE flightNumber LIKE ? AND "
                     + "(date BETWEEN ? AND ?) AND departureLocation = ? AND arrivalDestination = ? "
                     + "AND price BETWEEN ? AND ?";
             PreparedStatement p = connection.prepareStatement(stmt1);

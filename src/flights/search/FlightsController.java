@@ -26,7 +26,7 @@ public class FlightsController implements Initializable {
     
     //Stores filter values from UI that are used in Database call. Length to be decided.
     //TODO: decide default values, and set them in initialise.
-    private String[] filters = new String[10];
+    private String[] filters = new String[7];
     
     private ArrayList<Flight> flightList;
     
@@ -43,6 +43,13 @@ public class FlightsController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        filters[0] = "%";
+        filters[1] = "2019-06-06";
+        filters[2] = "2019-06-06";
+        filters[3] = "Reykjavik";
+        filters[4] = "Akureyri";
+        filters[5] = "0";
+        filters[6] = "50000";
         // TODO
         db = new DatabaseManager();
         //db.getDB();
