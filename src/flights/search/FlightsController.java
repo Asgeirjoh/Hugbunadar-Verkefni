@@ -47,7 +47,7 @@ public class FlightsController implements Initializable {
         db = new DatabaseManager();
         //db.getDB();
         flightList = db.filterDB(filters);
-         for(int i = 0; i < 10; i++) {
+         for(int i = 0; i < flightList.size(); i++) {
             System.out.println(flightList.get(i).toString());
         }
         System.out.println(flightList.size());

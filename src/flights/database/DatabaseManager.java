@@ -69,7 +69,27 @@ public class DatabaseManager {
             
             
             //TODO: rewrite query, add preparedstatement functionality that uses the parameters to filter the results.
-            ResultSet rs = statement.executeQuery("SELECT * FROM flights WHERE flightNumber = 'NY112'");
+            String fNumber = "NY112";
+            String firstDate = "2019-06-06";
+            String secondDate = "2019-06-08";
+            String fdepartureLocation = "Reykjavik";
+            String farrivalLocation = "Akureyri";
+            String minPrice = "0";
+            String maxPrice = "60000";
+            String stmt1 = "SELECT * FROM flights WHERE flightNumber = ? AND "
+                    + "(date BETWEEN ? AND ?) AND departureLocation = ? AND arrivalDestination = ? "
+                    + "AND price BETWEEN ? AND ?";
+            PreparedStatement p = connection.prepareStatement(stmt1);
+            p.clearParameters();
+            p.setString(1,fNumber);
+            p.setString(2,firstDate);
+            p.setString(3,secondDate);
+            p.setString(4,fdepartureLocation);
+            p.setString(5,farrivalLocation);
+            p.setString(6,minPrice);
+            p.setString(7,maxPrice);
+            ResultSet rs = p.executeQuery();
+            
             ArrayList<Flight> results = new ArrayList<>();
             while (rs.next()) { 
                 results.add(
@@ -88,6 +108,8 @@ public class DatabaseManager {
                 );
                 System.out.println("Flight number: " + rs.getString("flightNumber") + "   Date: "+ rs.getString("date") +  "   DepTime: "+ rs.getString("departureTime"));
             }
+            rs.close();
+            connection.close();
             return results;
         } catch (SQLException e) {
             // if the error message is "out of memory", 
