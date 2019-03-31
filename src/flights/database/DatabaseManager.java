@@ -74,8 +74,8 @@ public class DatabaseManager {
             ResultSet rs = statement.executeQuery("SELECT * FROM flights WHERE flightNumber = 'NY112'");
             ArrayList<Flight> results = new ArrayList<>();
             while (rs.next()) {
-                results.add(new Flight(rs.getString("flightNumber")));
-                System.out.println("Flight number: " + rs.getString("flightNumber") + "   Date: "+ rs.getString("date"));
+                results.add(new Flight(rs.getString("flightNumber"),  rs.getString("departureLocation"), rs.getString("destinationLocation"), rs.getString(""), rs.getString(""), rs.getString(""), rs.getString(""), rs.getString(""), rs.getString("")));
+                System.out.println("Flight number: " + rs.getString("flightNumber") + "   Date: "+ rs.getString("date") +  "   DepTime: "+ rs.getString("departureTime"));
             }
             return results;
         } catch (SQLException e) {

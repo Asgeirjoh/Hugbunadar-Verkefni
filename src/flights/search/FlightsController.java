@@ -47,7 +47,10 @@ public class FlightsController implements Initializable {
         db = new DatabaseManager();
         //db.getDB();
         flightList = db.filterDB(filters);
-        System.out.println(flightList.get(1).getFlightNumber());
+         for(int i = 0; i < 10; i++) {
+            System.out.println(flightList.get(i).toString());
+        }
+        System.out.println(flightList.size());
     }
     
     //Search method, uses filters from UI to call the database manager and get a list of flights to display in the UI

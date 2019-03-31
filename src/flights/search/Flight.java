@@ -6,26 +6,51 @@
 package flights.search;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  *
  * @author Bjarki Páll Hafþórsson, bph6@hi.is
  */
 public class Flight {
-    private String flightNumber;
-    private String departureLocation;
-    private String arrivalDestination;
-    //private Date departureTime;
-    //private Date arrivalTime;
-    private LocalDate date;
-    private String Airline;
-    private int aisleSeats;
-    private int windowSeats;
-    private int price;
+    private final String flightNumber;
+    private final String departureLocation;
+    private final String arrivalDestination;
+    private final LocalTime departureTime;
+    private final LocalTime arrivalTime;
+    private final LocalDate date;
+    private String airline;
+    private final int aisleSeats;
+    private final int windowSeats;
+    private final int price;
     
-
-    public Flight(String fltNum) {
+    /**
+     * Flight object constructor.
+     * All parameters are of type String.
+     * 
+     * @param fltNum
+     * @param depLoc
+     * @param dest
+     * @param depTime
+     * @param arrTime
+     * @param fltDate
+     * @param airl
+     * @param aisle
+     * @param window
+     * @param fltPrice 
+     */
+    public Flight(String fltNum, String depLoc, String dest, String depTime, String arrTime, String fltDate, String airl, String aisle, String window, String fltPrice) {
         flightNumber = fltNum;
+        departureLocation = depLoc;
+        arrivalDestination = dest;
+        departureTime = LocalTime.parse(depTime);
+        arrivalTime = LocalTime.parse(arrTime);
+        date = LocalDate.parse(fltDate);
+        airline = airl;
+        aisleSeats = Integer.parseInt(aisle);
+        windowSeats = Integer.parseInt(window);
+        price = Integer.parseInt(fltPrice);
+        
     }
     
     public void bookFlight() {
@@ -49,7 +74,7 @@ public class Flight {
     }
 
     public String getAirline() {
-        return Airline;
+        return airline;
     }
 
     public int getAisleSeats() {
@@ -62,5 +87,10 @@ public class Flight {
 
     public int getPrice() {
         return price;
+    }
+
+    @Override
+    public String toString() {
+        return "Flight{" + "flightNumber=" + flightNumber + ", departureLocation=" + departureLocation + ", arrivalDestination=" + arrivalDestination + ", departureTime=" + departureTime + ", arrivalTime=" + arrivalTime + ", date=" + date + ", airline=" + airline + ", aisleSeats=" + aisleSeats + ", windowSeats=" + windowSeats + ", price=" + price + '}';
     }
 }
