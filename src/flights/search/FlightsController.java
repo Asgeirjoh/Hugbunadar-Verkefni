@@ -26,7 +26,7 @@ public class FlightsController implements Initializable {
     
     //Stores filter values from UI that are used in Database call. Length to be decided.
     //TODO: decide default values, and set them in initialise.
-    private String[] filters = new String[7];
+    public String[] filters = new String[7];
     
     private ArrayList<Flight> flightList;
     
@@ -43,13 +43,13 @@ public class FlightsController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        filters[0] = "%";
-        filters[1] = "2019-06-06";
-        filters[2] = "2019-06-06";
-        filters[3] = "Reykjavik";
-        filters[4] = "Akureyri";
-        filters[5] = "0";
-        filters[6] = "50000";
+        filters[0] = "%"; // Flight number
+        filters[1] = "2019-06-06"; // Min date
+        filters[2] = "2019-06-06"; // Max date
+        filters[3] = "Reykjavik"; // Departure
+        filters[4] = "Akureyri"; // Arrival
+        filters[5] = "0"; // Min price
+        filters[6] = "50000"; // Max price
         // TODO
         db = new DatabaseManager();
         //db.getDB();
@@ -61,7 +61,14 @@ public class FlightsController implements Initializable {
     }
     
     //Search method, uses filters from UI to call the database manager and get a list of flights to display in the UI
-    public void search(){
+    public void search(String[] filters){
+        filters[0] = "%"; // Flight number
+        filters[1] = "2019-06-06"; // Min date
+        filters[2] = "2019-06-06"; // Max date
+        filters[3] = "Reykjavik"; // Departure
+        filters[4] = "Akureyri"; // Arrival
+        filters[5] = "0"; // Min price
+        filters[6] = "50000"; // Max price
         flightList = db.filterDB(filters);
         
     }
@@ -69,6 +76,14 @@ public class FlightsController implements Initializable {
     //call to sort the list by a new parameter
     public void sortBy() {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    /**
+     *
+     * @return
+     */
+    public ArrayList<Flight> returnFlightList() {
+        return flightList;
     }
     
 }

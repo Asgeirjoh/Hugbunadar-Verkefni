@@ -77,7 +77,7 @@ public class DatabaseManager {
             String minPrice = parameters[5];
             String maxPrice = parameters[6];
             String stmt1 = "SELECT * FROM flights WHERE flightNumber LIKE ? AND "
-                    + "(date BETWEEN ? AND ?) AND departureLocation = ? AND arrivalDestination = ? "
+                    + "(date BETWEEN ? AND ?) AND departureLocation LIKE ? AND arrivalDestination LIKE ? "
                     + "AND price BETWEEN ? AND ?";
             PreparedStatement p = connection.prepareStatement(stmt1);
             p.clearParameters();
