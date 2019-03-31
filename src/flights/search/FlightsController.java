@@ -55,8 +55,8 @@ public class FlightsController implements Initializable {
     
     //Search method, uses filters from UI to call the database manager and get a list of flights to display in the UI
     public void search(){
-        //flightList = db.filterDB(filters);
-        throw new UnsupportedOperationException("Not supported yet.");
+        flightList = db.filterDB(filters);
+        
     }
     
     //call to sort the list by a new parameter

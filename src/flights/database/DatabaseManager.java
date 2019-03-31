@@ -38,11 +38,9 @@ public class DatabaseManager {
             connection = DriverManager.getConnection("jdbc:sqlite:.\\src\\flights\\database\\FlightDB.db");
             Statement statement = connection.createStatement();
 
-            ResultSet rs = statement.executeQuery("SELECT * FROM flights WHERE flightNumber = 'NY112'");
-            ArrayList<Flight> results = new ArrayList<>();
+            ResultSet rs = statement.executeQuery("SELECT * FROM flights");
             while (rs.next()) {
-                results.add(new Flight(rs.getString("flightNumber")));
-                System.out.println("Flight number: " + rs.getString("flightNumber") + "   Date: "+ rs.getString("date"));
+                
             }
         } catch (SQLException e) {
             // if the error message is "out of memory", 
@@ -73,8 +71,21 @@ public class DatabaseManager {
             //TODO: rewrite query, add preparedstatement functionality that uses the parameters to filter the results.
             ResultSet rs = statement.executeQuery("SELECT * FROM flights WHERE flightNumber = 'NY112'");
             ArrayList<Flight> results = new ArrayList<>();
-            while (rs.next()) {
-                results.add(new Flight(rs.getString("flightNumber"),  rs.getString("departureLocation"), rs.getString("destinationLocation"), rs.getString(""), rs.getString(""), rs.getString(""), rs.getString(""), rs.getString(""), rs.getString("")));
+            while (rs.next()) { 
+                results.add(
+                        new Flight(
+                                rs.getString("flightNumber"), 
+                                rs.getString("departureLocation"), 
+                                rs.getString("arrivalDestination"), 
+                                rs.getString("departureTime"), 
+                                rs.getString("arrivalTime"), 
+                                rs.getString("date"), 
+                                rs.getString("airline"), 
+                                rs.getString("aisleSeats"), 
+                                rs.getString("windowSeats"), 
+                                rs.getString("price")
+                        )
+                );
                 System.out.println("Flight number: " + rs.getString("flightNumber") + "   Date: "+ rs.getString("date") +  "   DepTime: "+ rs.getString("departureTime"));
             }
             return results;
