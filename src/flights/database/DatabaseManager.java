@@ -78,7 +78,8 @@ public class DatabaseManager {
             String maxPrice = parameters[6];
             String stmt1 = "SELECT * FROM flights WHERE flightNumber LIKE ? AND "
                     + "(date BETWEEN ? AND ?) AND departureLocation = ? AND arrivalDestination = ? "
-                    + "AND price BETWEEN ? AND ?";
+                    + "AND price BETWEEN ? AND ?"
+                    + "ORDER BY DATE ASC, price ASC";
             PreparedStatement p = connection.prepareStatement(stmt1);
             p.clearParameters();
             p.setString(1,fNumber);

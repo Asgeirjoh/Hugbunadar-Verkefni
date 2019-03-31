@@ -43,9 +43,10 @@ public class FlightsController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         filters[0] = "%";
         filters[1] = "2019-06-06";
-        filters[2] = "2019-06-06";
+        filters[2] = "2019-06-07";
         filters[3] = "Reykjavik";
         filters[4] = "Akureyri";
         filters[5] = "0";
