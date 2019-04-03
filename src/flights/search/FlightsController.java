@@ -43,6 +43,7 @@ public class FlightsController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        /*
         filters[0] = "%"; // Flight number
         filters[1] = "2019-06-06"; // Min date
         filters[2] = "2019-06-06"; // Max date
@@ -58,10 +59,12 @@ public class FlightsController implements Initializable {
             System.out.println(flightList.get(i).toString());
         }
         System.out.println(flightList.size());
+        */
     }
     
     //Search method, uses filters from UI to call the database manager and get a list of flights to display in the UI
     public void search(String[] filters){
+        /*
         filters[0] = "%"; // Flight number
         filters[1] = "2019-06-06"; // Min date
         filters[2] = "2019-06-06"; // Max date
@@ -69,6 +72,8 @@ public class FlightsController implements Initializable {
         filters[4] = "Akureyri"; // Arrival
         filters[5] = "0"; // Min price
         filters[6] = "50000"; // Max price
+        */
+        db = new DatabaseManager();
         flightList = db.filterDB(filters);
         
     }
@@ -78,10 +83,7 @@ public class FlightsController implements Initializable {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
-    /**
-     *
-     * @return
-     */
+    // returns ArrayList<Flight>
     public ArrayList<Flight> returnFlightList() {
         return flightList;
     }
