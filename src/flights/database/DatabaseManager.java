@@ -76,16 +76,18 @@ public class DatabaseManager {
             String farrivalLocation = parameters[4];
             String minPrice = parameters[5];
             String maxPrice = parameters[6];
-            String stmt1 = "SELECT * FROM flights WHERE flightNumber LIKE ? AND "
-                    + "(date BETWEEN ? AND ?) AND departureLocation LIKE ? AND arrivalDestination LIKE ? "
+            String stmt1 = "SELECT * FROM flights WHERE flightNumber LIKE ? "
+                    + "AND departureLocation LIKE ? "
+                    + "AND arrivalDestination LIKE ? "
+                    + "AND (date BETWEEN ? AND ?) "
                     + "AND price BETWEEN ? AND ?";
             PreparedStatement p = connection.prepareStatement(stmt1);
             p.clearParameters();
             p.setString(1,fNumber);
-            p.setString(2,firstDate);
-            p.setString(3,secondDate);
-            p.setString(4,fdepartureLocation);
-            p.setString(5,farrivalLocation);
+            p.setString(2,fdepartureLocation);
+            p.setString(3,farrivalLocation);
+            p.setString(4,firstDate);
+            p.setString(5,secondDate);
             p.setString(6,minPrice);
             p.setString(7,maxPrice);
             ResultSet rs = p.executeQuery();
