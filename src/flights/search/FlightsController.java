@@ -15,6 +15,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import java.util.ArrayList;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 
 /**
  *
@@ -25,21 +27,27 @@ public class FlightsController implements Initializable {
     private DatabaseManager db;
     
     //Stores filter values from UI that are used in Database call. Length to be decided.
-    //TODO: decide default values, and set them in initialise.
+    //TODO: decide default values, and set them in initialise EDIT: maybe create a defaultFilters array, store the defaults here, create object here.
+    
     public String[] filters = new String[7];
+    //private String[] defaultFilters = 
     
     private ArrayList<Flight> flightList;
     
     @FXML
-    private Label label;
+    private TextField setDepartureLocation;
     @FXML
-    private Button button;
-    
+    private TextField setArrivalLocation;
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
+    private TextField priceLowerBound;
+    @FXML
+    private TextField priceUpperBound;
+    @FXML
+    private DatePicker dateLower;
+    @FXML
+    private DatePicker dateUpper;
+    @FXML
+    private Button searchButton;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -60,6 +68,12 @@ public class FlightsController implements Initializable {
         }
         System.out.println(flightList.size());
         */
+    }
+    /*
+     * Get the filters set by the user from the UI, and put into the filters String array
+     */
+    private void getFilters(){
+        
     }
     
     //Search method, uses filters from UI to call the database manager and get a list of flights to display in the UI
