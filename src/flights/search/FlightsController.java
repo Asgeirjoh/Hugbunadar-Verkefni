@@ -8,13 +8,12 @@ package flights.search;
 import flights.database.DatabaseManager;
 
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.Label;  
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
@@ -25,6 +24,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextField;
+import javafx.beans.value.ObservableValue;
 import javafx.beans.value.ChangeListener;
 
 
@@ -53,8 +53,6 @@ public class FlightsController implements Initializable {
     
     private ObservableList<Flight> oFlightList;
     
-    private ArrayList<TableColumn> columnList;
-    
     @FXML
     private ChoiceBox<?> setDepartureLocation;
     @FXML
@@ -78,11 +76,12 @@ public class FlightsController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        filters = defaultFilters;
-        defaultFilters();
+//        filters = defaultFilters;
+//        defaultFilters();
+        filtersInit();
         
         resultsTableInit();
-        search(filters);
+        searchHandler();
         showResults();
         
         //flightnumber;departure;arrival;depTime;arrTime;date;airline;aisle;window;price;
@@ -90,7 +89,7 @@ public class FlightsController implements Initializable {
 //        filters[1] = "2019-06-06"; // Min date
 //        filters[2] = "2019-06-06"; // Max date
 //        filters[3] = "Reykjavik"; // Departure
-        filters[4] = "Akureyri"; // Arrival
+//        filters[4] = "Akureyri"; // Arrival
 //        filters[5] = "0"; // Min price
 //        filters[6] = "50000"; // Max price
     }
@@ -163,67 +162,77 @@ public class FlightsController implements Initializable {
     }
     
     /**
-     * Implements the default filters into the UI  elements
+     * Initialises UI filter elements
      */
-    private void defaultFilters() {
+    private void filtersInit() {
+       limitToNumbers(setPriceMin);
+       limitToNumbers(setPriceMax);
+       
+       //TODO: initialise ChoiceBox for departure/arrival locaitions
+       
+       setDefaultFilters();
+    }
+    
+    /**
+     * Introduces the default filter values into the UI  elements
+     */
+    private void setDefaultFilters() {
         // setFlightNumber default null//    setDateMin;
-        setDateMin.setValue(LocalDate.parse(filters[1]));
+        setDateMin.setValue(LocalDate.parse(defaultFilters[1]));
 
         // setDateMax;
-        setDateMax.setValue(LocalDate.parse(filters[2]));
+        setDateMax.setValue(LocalDate.parse(defaultFilters[2]));
 
+        //TODO: implement choicebox and set the correct values into them
         // filters[3] = "Reykjavik"; // Departure
-        // filters[4] = "Akureyri"; // Arrival
+        // filters[4] = "%"; // Arrival
+        
         // setDepartureLocation;
         // ArrivalLocation;
         // setPriceMin;
-        setPriceMin.setText(filters[5]);
+        setPriceMin.setText(defaultFilters[5]);
         //    setPriceMax;
-        setPriceMax.setText(filters[6]);
+        setPriceMax.setText(defaultFilters[6]);
         //    setDateMin;
-        setDateMin.setValue(LocalDate.parse(filters[1]));
-
-        //    setDateMax;
-        setDateMax.setValue(LocalDate.parse(filters[2]));
-
     }
 
     /**
      * Updates the filters array with the filters set by the user in the UI
      */
     private void updateFilters(){
-        //        filters[0], default "%"; // Flight number
-        if(setFlightNumber.getText() != null) {
+        if (!setFlightNumber.getText().isEmpty()) {
             filters[0] = setFlightNumber.getText();
         } else {
-            
             filters[0] = defaultFilters[0];
         }
 //        filters[1], default:  LocalDate.now().toString(); // Min date
         filters[1] = setDateMin.getValue().toString();
 
-
 //        filters[2], default:  LocalDate.now().plusDays(7).toString(); // Max date
         filters[2] = setDateMax.getValue().toString();
-        
+
 //        filters[3], default:  "Reykjavik"; // Departure
-
+        if (setDepartureLocation.getValue() != null) {
+            filters[3] = setDepartureLocation.getValue().toString();
+        } else {
+            filters[3] = defaultFilters[3];
+        }
 //        filters[4], default:  "%"; // Arrival
-
+        if (setArrivalLocation.getValue() != null) {
+            filters[4] = setArrivalLocation.getValue().toString();
+        } else {
+            filters[4] = defaultFilters[4];
+        }
 
 //        filters[5], default:  "0"; // Min price
         filters[5] = setPriceMin.getText();
 //        filters[6], default:  "50000"; // Max price
         filters[6] = setPriceMax.getText();
 
-
-
-        LocalDate testNow = LocalDate.now();
-        setDateMin.setValue(LocalDate.now());
-        for(int i = 0; i<filters.length; i++) {
-            System.out.println(filters[i]+", ");
+        for (String filter : filters) {
+            System.out.print(filter + ", ");
         }
-        
+
     }
     /**
      * Search method updates the FlightList according to the filters specified, 
@@ -233,7 +242,6 @@ public class FlightsController implements Initializable {
     public void search(String[] filters){
         db = new DatabaseManager();
         flightList = db.filterDB(filters);
-//        System.out.println("Search: List size: "+flightList.size());
     }
     
     // returns ArrayList<Flight>
@@ -270,5 +278,20 @@ public class FlightsController implements Initializable {
 
     }
     
+    /**
+     * Prohibits any input that is not a number in text field that this is applied to.
+     * @param numberField, a text field
+     */
+    private void limitToNumbers(TextField numberField) { 
+        numberField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                    String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    numberField.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+    }
     
 }
