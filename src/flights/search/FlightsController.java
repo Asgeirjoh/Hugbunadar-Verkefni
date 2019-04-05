@@ -25,6 +25,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextField;
+import javafx.beans.value.ChangeListener;
+
 
 /**
  *
@@ -161,7 +163,7 @@ public class FlightsController implements Initializable {
     }
     
     /**
-     * 
+     * Implements the default filters into the UI  elements
      */
     private void defaultFilters() {
         // setFlightNumber default null//    setDateMin;
@@ -190,21 +192,38 @@ public class FlightsController implements Initializable {
      * Updates the filters array with the filters set by the user in the UI
      */
     private void updateFilters(){
-        LocalDate maxDate = setDateMax.getValue();
-        System.out.println(LocalDate.now().plusDays(7).toString());
+        //        filters[0], default "%"; // Flight number
+        if(setFlightNumber.getText() != null) {
+            filters[0] = setFlightNumber.getText();
+        } else {
+            
+            filters[0] = defaultFilters[0];
+        }
+//        filters[1], default:  LocalDate.now().toString(); // Min date
+        filters[1] = setDateMin.getValue().toString();
+
+
+//        filters[2], default:  LocalDate.now().plusDays(7).toString(); // Max date
+        filters[2] = setDateMax.getValue().toString();
         
+//        filters[3], default:  "Reykjavik"; // Departure
+
+//        filters[4], default:  "%"; // Arrival
+
+
+//        filters[5], default:  "0"; // Min price
+        filters[5] = setPriceMin.getText();
+//        filters[6], default:  "50000"; // Max price
+        filters[6] = setPriceMax.getText();
+
+
+
         LocalDate testNow = LocalDate.now();
         setDateMin.setValue(LocalDate.now());
+        for(int i = 0; i<filters.length; i++) {
+            System.out.println(filters[i]+", ");
+        }
         
-        System.out.println(testNow);
-//        filters[0] = "%"; // Flight number
-//        filters[1] = "2019-06-06"; // Min date
-//        filters[2] = "2019-06-06"; // Max date
-//        filters[3] = "Reykjavik"; // Departure
-//        filters[4] = "Akureyri"; // Arrival
-//        filters[5] = "0"; // Min price
-//        filters[6] = "50000"; // Max price
-                
     }
     /**
      * Search method updates the FlightList according to the filters specified, 
@@ -214,7 +233,7 @@ public class FlightsController implements Initializable {
     public void search(String[] filters){
         db = new DatabaseManager();
         flightList = db.filterDB(filters);
-        System.out.println("Search: List size: "+flightList.size());
+//        System.out.println("Search: List size: "+flightList.size());
     }
     
     // returns ArrayList<Flight>
@@ -248,8 +267,8 @@ public class FlightsController implements Initializable {
 
     @FXML
     private void bookHandler(ActionEvent event) {
-        
-    }
 
+    }
+    
     
 }
