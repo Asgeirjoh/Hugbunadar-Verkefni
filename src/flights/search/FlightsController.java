@@ -39,7 +39,13 @@ public class FlightsController implements Initializable {
     
     public String[] filters = new String[7];
     //Todo: make date filters use todays date and today + week/month
-    private final String[] defaultFilters = {"%", "2019-06-06", "2019-06-07", "Reykjavik", "%", "0", "50000"};
+    private final String[] defaultFilters = {"%",
+                                             LocalDate.now().toString(),
+                                             LocalDate.now().plusDays(7).toString(),
+                                             "Reykjavik",
+                                             "%",
+                                             "0",
+                                             "50000"};
     
     private ArrayList<Flight> flightList;
     
@@ -158,7 +164,12 @@ public class FlightsController implements Initializable {
      */
     private void updateFilters(){
         LocalDate maxDate = setDateMax.getValue();
-        System.out.println(maxDate);
+        System.out.println(LocalDate.now().plusDays(7).toString());
+        
+        LocalDate testNow = LocalDate.now();
+        setDateMin.setValue(LocalDate.now());
+        
+        System.out.println(testNow);
 //        filters[0] = "%"; // Flight number
 //        filters[1] = "2019-06-06"; // Min date
 //        filters[2] = "2019-06-06"; // Max date
@@ -191,7 +202,11 @@ public class FlightsController implements Initializable {
         results.setItems(oFlightList);
         
     }
-
+ /**
+  * Handles the searchButton event.
+  * updates the filters, performs a database search with the updated filters,
+  * then displays the results in the results table.
+  */
     @FXML
     private void searchHandler() {
         updateFilters();
