@@ -8,6 +8,7 @@ package flights.search;
 import flights.database.DatabaseManager;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ChoiceBox;
@@ -35,6 +37,7 @@ public class FlightsController implements Initializable {
     
     //Stores filter values from UI that are used in Database call. Length to be decided.
     //TODO: decide default values, and set them in initialise EDIT: maybe create a defaultFilters array, store the defaults here, create object here.
+    String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
     
     public String[] filters = new String[7];
     //Todo: make date filters use todays date and today + week/month
