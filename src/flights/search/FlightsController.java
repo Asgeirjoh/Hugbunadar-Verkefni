@@ -27,7 +27,7 @@ import javafx.scene.control.TextField;
 
 /**
  *
- * @author asgei
+ * @author asgeir
  */
 public class FlightsController implements Initializable {
     
