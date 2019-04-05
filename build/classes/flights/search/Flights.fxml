@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flights.search.FlightsController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="800.0" stylesheets="@search.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flights.search.FlightsController">
    <children>
       <VBox prefHeight="800.0" prefWidth="800.0">
          <children>
@@ -89,6 +89,11 @@
                               <Insets bottom="3.0" left="10.0" right="10.0" top="3.0" />
                            </HBox.margin>
                         </VBox>
+                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchHandler" text="Search" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
                      </children>
                   </HBox>
                </children>
@@ -100,7 +105,11 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchHandler" text="Search" />
+                  <Button fx:id="bookButton" mnemonicParsing="false" onAction="#bookHandler" text="Book Flight" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
                </children>
             </HBox>
          </children>
