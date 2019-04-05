@@ -53,12 +53,14 @@ public class FlightsController implements Initializable {
     
     private ArrayList<String> airportList;
     
+    private ObservableList<String> oairportList;
+    
     private ObservableList<Flight> oFlightList;
     
     @FXML
-    private ChoiceBox<?> setDepartureLocation;
+    private ChoiceBox<String> setDepartureLocation;
     @FXML
-    private ChoiceBox<?> setArrivalLocation;
+    private ChoiceBox<String> setArrivalLocation;
     @FXML
     private TextField setPriceMin;
     @FXML
@@ -78,10 +80,6 @@ public class FlightsController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        db = new DatabaseManager();
-        db.fetchAirports();
-        
         
         filtersInit();
         resultsTableInit();
@@ -150,6 +148,7 @@ public class FlightsController implements Initializable {
         price.setMinWidth(80);
         price.setCellValueFactory(
                 new PropertyValueFactory<Flight, String>("price"));
+        price.setSortType(TableColumn.SortType.ASCENDING);
 
         //Put columns into results TableView
         results.getColumns().addAll(flightNumber, 
@@ -162,7 +161,8 @@ public class FlightsController implements Initializable {
                                     seating, 
                                     price
         );
-        
+       results.getSortOrder().clear(); 
+       results.getSortOrder().add(price); 
     }
     
     /**
@@ -172,7 +172,11 @@ public class FlightsController implements Initializable {
        limitToNumbers(setPriceMin);
        limitToNumbers(setPriceMax);
        
-       //TODO: initialise ChoiceBox for departure/arrival locaitions
+       db = new DatabaseManager();
+       airportList = db.fetchAirports();
+       oairportList = FXCollections.observableArrayList(airportList);
+       setDepartureLocation.setItems(FXCollections.observableArrayList(oairportList));
+       setArrivalLocation.setItems(FXCollections.observableArrayList(oairportList));
        
        setDefaultFilters();
     }
@@ -187,9 +191,9 @@ public class FlightsController implements Initializable {
         // setDateMax;
         setDateMax.setValue(LocalDate.parse(defaultFilters[2]));
 
-        //TODO: implement choicebox and set the correct values into them
-        // filters[3] = "Reykjavik"; // Departure
-        // filters[4] = "%"; // Arrival
+        // setDepartureLocation
+        setDepartureLocation.setValue(defaultFilters[3]);
+        //setArrivalLocation.setValue(defaultFilters[4]);
         
         // setDepartureLocation;
         // ArrivalLocation;
