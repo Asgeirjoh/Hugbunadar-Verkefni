@@ -42,7 +42,7 @@ public class FlightsController implements Initializable {
     private final String[] defaultFilters = {"%",
                                              LocalDate.now().toString(),
                                              LocalDate.now().plusDays(7).toString(),
-                                             "Reykjavik",
+                                             "Reykjavik", //
                                              "%",
                                              "0",
                                              "50000"};
@@ -157,6 +157,32 @@ public class FlightsController implements Initializable {
                                     price
         );
         
+    }
+    
+    /**
+     * 
+     */
+    private void defaultFilters() {
+        // setFlightNumber default null//    setDateMin;
+        setDateMin.setValue(LocalDate.parse(filters[1]));
+
+        // setDateMax;
+        setDateMax.setValue(LocalDate.parse(filters[2]));
+
+        // filters[3] = "Reykjavik"; // Departure
+        // filters[4] = "Akureyri"; // Arrival
+        // setDepartureLocation;
+        // ArrivalLocation;
+        // setPriceMin;
+        setPriceMin.setText(filters[5]);
+        //    setPriceMax;
+        setPriceMax.setText(filters[6]);
+        //    setDateMin;
+        setDateMin.setValue(LocalDate.parse(filters[1]));
+
+        //    setDateMax;
+        setDateMax.setValue(LocalDate.parse(filters[2]));
+
     }
 
     /**
