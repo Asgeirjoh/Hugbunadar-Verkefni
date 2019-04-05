@@ -14,8 +14,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ChoiceBox;
@@ -51,21 +51,21 @@ public class FlightsController implements Initializable {
     @FXML
     private ChoiceBox<?> setArrivalLocation;
     @FXML
-    private TextField priceLowerBound;
+    private TextField priceMin;
     @FXML
-    private TextField priceUpperBound;
+    private TextField priceMax;
     @FXML
-    private DatePicker dateLower;
+    private DatePicker dateMin;
     @FXML
-    private DatePicker dateUpper;
+    private DatePicker dateMax;
     @FXML
     private Button searchButton;
-    @FXML
-    private TextField priceLowerBound1;
     @FXML
     private TableView<Flight> results;
     @FXML
     private Button bookButton;
+    @FXML
+    private TextField flightNumber;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -156,6 +156,15 @@ public class FlightsController implements Initializable {
      * Updates the filters array with the filters set by the user in the UI
      */
     private void updateFilters(){
+        LocalDate upperDate = dateMax.getValue();
+        System.out.println(upperDate);
+//        filters[0] = "%"; // Flight number
+//        filters[1] = "2019-06-06"; // Min date
+//        filters[2] = "2019-06-06"; // Max date
+//        filters[3] = "Reykjavik"; // Departure
+//        filters[4] = "Akureyri"; // Arrival
+//        filters[5] = "0"; // Min price
+//        filters[6] = "50000"; // Max price
                 
     }
     /**
