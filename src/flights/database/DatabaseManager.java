@@ -23,40 +23,6 @@ public class DatabaseManager {
     
     private String queryString;
     
-    /**
-     * @param args the command line arguments
-     */
-
-    // load the sqlite-JDBC driver using the current class loader
-    public void getDB() {
-
-        //Class.forName("org.sqlite.JDBC");
-        Connection connection = null;
-
-        try {
-            // create a database connection
-            connection = DriverManager.getConnection("jdbc:sqlite:.\\src\\flights\\database\\FlightDB.db");
-            Statement statement = connection.createStatement();
-
-            ResultSet rs = statement.executeQuery("SELECT * FROM flights");
-            while (rs.next()) {
-                
-            }
-        } catch (SQLException e) {
-            // if the error message is "out of memory", 
-            // it probably means no database file is found
-            System.err.println(e.getMessage());
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                // connection close failed.
-                System.err.println(e);
-            }
-        }
-    }
     public ArrayList<Flight> filterDB(String[] parameters) {
 
         //Class.forName("org.sqlite.JDBC");

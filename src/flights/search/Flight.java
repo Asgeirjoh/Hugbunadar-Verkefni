@@ -19,7 +19,7 @@ public class Flight {
     private final LocalTime departureTime;
     private final LocalTime arrivalTime;
     private final LocalDate date;
-    private String airline;
+    private final String airline;
     private final int aisleSeats;
     private final int windowSeats;
     private final int price;

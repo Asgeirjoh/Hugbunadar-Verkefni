@@ -179,11 +179,6 @@ public class FlightsController implements Initializable {
         System.out.println("Search: List size: "+flightList.size());
     }
     
-    //call to sort the list by a new parameter
-    public void sortBy() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
     // returns ArrayList<Flight>
     public ArrayList<Flight> returnFlightList() {
         return flightList;
