@@ -77,6 +77,7 @@ public class FlightsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         filters = defaultFilters;
+        defaultFilters();
         
         resultsTableInit();
         search(filters);
