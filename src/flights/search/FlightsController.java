@@ -51,6 +51,8 @@ public class FlightsController implements Initializable {
     
     private ArrayList<Flight> flightList;
     
+    private ArrayList<String> airportList;
+    
     private ObservableList<Flight> oFlightList;
     
     private ArrayList<TableColumn> columnList;
@@ -78,6 +80,8 @@ public class FlightsController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        db = new DatabaseManager();
+        db.fetchAirports();
         filters = defaultFilters;
         defaultFilters();
         
