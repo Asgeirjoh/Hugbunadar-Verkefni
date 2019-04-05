@@ -108,7 +108,6 @@ public class DatabaseManager {
                                 rs.getString("price")
                         )
                 );
-                System.out.println("Flight number: " + rs.getString("flightNumber") + "   Date: "+ rs.getString("date") +  "   DepTime: "+ rs.getString("departureTime"));
             }
             rs.close();
             connection.close();
