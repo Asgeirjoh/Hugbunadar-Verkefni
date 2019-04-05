@@ -23,6 +23,45 @@ public class DatabaseManager {
     
     private String queryString;
     
+    public ArrayList<String> fetchAirports() {
+        //Class.forName("org.sqlite.JDBC");
+        Connection connection = null;
+
+        try {
+            // create a database connection
+            connection = DriverManager.getConnection("jdbc:sqlite:.\\src\\flights\\database\\FlightDB.db");
+            Statement statement = connection.createStatement();
+            
+            
+            //TODO: rewrite query, add preparedstatement functionality that uses the parameters to filter the results.
+            String stmt1 = "SELECT DISTINCT arrivalDestination FROM flights ORDER BY arrivalDestination";
+            PreparedStatement p = connection.prepareStatement(stmt1);
+            ResultSet rs = p.executeQuery();
+            
+            ArrayList<String> airports = new ArrayList<>();
+            while (rs.next()) { 
+                airports.add(rs.getString(1));
+            }
+            rs.close();
+            connection.close();
+            return airports;
+        } catch (SQLException e) {
+            // if the error message is "out of memory", 
+            // it probably means no database file is found
+            System.err.println(e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e);
+            }
+        }
+        return null;
+    }
+    
     public ArrayList<Flight> filterDB(String[] parameters) {
 
         //Class.forName("org.sqlite.JDBC");
