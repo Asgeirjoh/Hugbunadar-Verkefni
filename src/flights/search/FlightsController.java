@@ -84,6 +84,11 @@ public class FlightsController implements Initializable {
 //        filters[5] = "0"; // Min price
 //        filters[6] = "50000"; // Max price
     }
+    
+    /**
+     * Initialise the results TableView UI element
+     * Adds columns and instructions on what variable from Flight is 
+     */
     private void resultsTableInit() {
         
         TableColumn flightNumber = new TableColumn("Flight Number");  //Make columns for the table
@@ -151,7 +156,7 @@ public class FlightsController implements Initializable {
      * Updates the filters array with the filters set by the user in the UI
      */
     private void updateFilters(){
-        
+                
     }
     /**
      * Search method updates the FlightList according to the filters specified, 
@@ -184,8 +189,6 @@ public class FlightsController implements Initializable {
 
     @FXML
     private void searchHandler() {
-        System.out.println("Search event");
-        System.out.println(Arrays.toString(filters));
         updateFilters();
         search(filters);
         showResults();
