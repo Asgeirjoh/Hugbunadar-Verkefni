@@ -56,8 +56,8 @@ public class Flight {
     public void bookFlight() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
-      public String getFlightNumber() {
+
+    public String getFlightNumber() {
         return flightNumber;
     }
 
@@ -67,6 +67,14 @@ public class Flight {
 
     public String getArrivalDestination() {
         return arrivalDestination;
+    }
+
+    public LocalTime getDepartureTime() {
+        return departureTime;
+    }
+
+    public LocalTime getArrivalTime() {
+        return arrivalTime;
     }
 
     public LocalDate getDate() {
@@ -84,10 +92,15 @@ public class Flight {
     public int getWindowSeats() {
         return windowSeats;
     }
+    
+    public int getSeating() {
+        return windowSeats+aisleSeats;
+    }
 
     public int getPrice() {
         return price;
     }
+
 
     @Override
     public String toString() {
