@@ -36,7 +36,6 @@ public class FlightsController implements Initializable {
     
     //Stores filter values from UI that are used in Database call. Length to be decided.
     //TODO: decide default values, and set them in initialise EDIT: maybe create a defaultFilters array, store the defaults here, create object here.
-    String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
     
     public String[] filters = new String[7];
     //Todo: make date filters use todays date and today + week/month
@@ -53,21 +52,21 @@ public class FlightsController implements Initializable {
     @FXML
     private ChoiceBox<?> setArrivalLocation;
     @FXML
-    private TextField priceMin;
+    private TextField setPriceMin;
     @FXML
-    private TextField priceMax;
+    private TextField setPriceMax;
     @FXML
-    private DatePicker dateMin;
+    private DatePicker setDateMin;
     @FXML
-    private DatePicker dateMax;
+    private DatePicker setDateMax;
+    @FXML
+    private TextField setFlightNumber;
     @FXML
     private Button searchButton;
     @FXML
     private TableView<Flight> results;
     @FXML
     private Button bookButton;
-    @FXML
-    private TextField flightNumber;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -158,8 +157,8 @@ public class FlightsController implements Initializable {
      * Updates the filters array with the filters set by the user in the UI
      */
     private void updateFilters(){
-        LocalDate upperDate = dateMax.getValue();
-        System.out.println(upperDate);
+        LocalDate maxDate = setDateMax.getValue();
+        System.out.println(maxDate);
 //        filters[0] = "%"; // Flight number
 //        filters[1] = "2019-06-06"; // Min date
 //        filters[2] = "2019-06-06"; // Max date
