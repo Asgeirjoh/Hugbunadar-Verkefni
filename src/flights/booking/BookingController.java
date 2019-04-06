@@ -33,27 +33,4 @@ public class BookingController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    
-    /**
-     * confirmBookingShow opens booking.fxml
-     */
-    public void confirmBookingShow() {
-        DialogPane p = new DialogPane();
-        nDialog.setVisible(true);
-        // Innihald sett sem Pane sem fengið er úr Scene builder 
-        p.setContent(nDialog);
-        
-        // Umgjörðin búin til - Dialog sem gefur niðurstöðu í Leikmenn klasann
-        Dialog<ButtonType> d = new Dialog();
-        
-        // og innihaldið sett í umgjörðina 
-        d.setDialogPane(p);
-        // Haus, titill og mynd ef vill 
-        d.setTitle("Skoða dagskrárlið");
-        ButtonType haettaVid = new ButtonType("Hætta við", 
-                ButtonBar.ButtonData.CANCEL_CLOSE);
-        d.getDialogPane().getButtonTypes().add(haettaVid);
-        // Dialog birtur - svarið ekki notað 
-        d.showAndWait();
-    }
 }

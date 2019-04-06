@@ -59,7 +59,7 @@ public class FlightsController implements Initializable {
     private ObservableList<Flight> oFlightList;
     
     @FXML
-    private BookingController bookingController;
+    private BookFlightController bookFlightController;
     @FXML
     private ChoiceBox<String> setDepartureLocation;
     @FXML
@@ -274,10 +274,9 @@ public class FlightsController implements Initializable {
      * Takes current selected flight and advances the user to the booking interface
      * @param event 
      */
-
     @FXML
     private void bookHandler(ActionEvent event) {
-        bookingController.confirmBookingShow();
+        bookFlightController.confirmBookingShow();
     }
     
     /**

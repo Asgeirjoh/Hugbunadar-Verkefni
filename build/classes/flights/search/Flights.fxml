@@ -17,7 +17,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="800.0" stylesheets="@search.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flights.search.FlightsController">
    <children>
-      <fx:include fx:id="booking" source="/flights/booking/Booking.fxml" />
+      <fx:include fx:id="bookFlight" source="BookFlight.fxml" />
       <VBox prefHeight="800.0" prefWidth="800.0">
          <children>
             <MenuBar>
