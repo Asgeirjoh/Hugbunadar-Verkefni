@@ -37,6 +37,11 @@ public class BookFlightController implements Initializable {
     private ObservableList<String> opaymentTypes;
     private ObservableList<String> oseatTypes;
     
+    public String getName;
+    public String getIdNumber;
+    public String getSeatType;
+    public String getPaymentType;
+    
     @FXML
     private AnchorPane nDialog;
     @FXML
@@ -59,7 +64,7 @@ public class BookFlightController implements Initializable {
     /**
      * confirmBookingShow opens BookFlight.fxml
      */
-    public void confirmBookingShow() {
+    public void confirmBookingShow(Flight flight) {
         DialogPane p = new DialogPane();
         nDialog.setVisible(true);
         // Innihald sett sem Pane sem fengið er úr Scene builder 
@@ -80,11 +85,17 @@ public class BookFlightController implements Initializable {
         ButtonType confirmBooking = new ButtonType("Confirm Booking", 
                 ButtonBar.ButtonData.OK_DONE);
         d.getDialogPane().getButtonTypes().add(confirmBooking);
+        
         // call optionsInit()
         optionsInit();
        
         // Dialog shown
         Optional<ButtonType> outcome = d.showAndWait();
+        // get User information from UI
+        getName = setName.getText();
+        getIdNumber = setIdNumber.getText();
+        getSeatType = setSeatType.getValue();
+        getPaymentType = setPaymentType.getValue();
     }
     
     /**

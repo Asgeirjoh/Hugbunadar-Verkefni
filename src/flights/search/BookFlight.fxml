@@ -25,7 +25,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label prefHeight="70.0" prefWidth="181.0" text="Enter Name:">
+            <Label prefHeight="82.0" prefWidth="211.0" text="Enter Name:">
                <padding>
                   <Insets left="5.0" />
                </padding>
@@ -33,7 +33,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label prefHeight="69.0" prefWidth="181.0" text="Enter ID number:" GridPane.rowIndex="1">
+            <Label prefHeight="72.0" prefWidth="209.0" text="Enter ID number:" GridPane.rowIndex="1">
                <padding>
                   <Insets left="5.0" />
                </padding>
@@ -41,7 +41,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label prefHeight="68.0" prefWidth="198.0" text="Enter Payment Method:" GridPane.rowIndex="2">
+            <Label prefHeight="72.0" prefWidth="209.0" text="Enter Payment Method:" GridPane.rowIndex="3">
                <padding>
                   <Insets left="5.0" />
                </padding>
@@ -49,7 +49,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label prefHeight="53.0" prefWidth="193.0" text="Choose Seat:" GridPane.rowIndex="3">
+            <Label prefHeight="67.0" prefWidth="209.0" text="Choose Seat:" GridPane.rowIndex="2">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -70,8 +70,8 @@
                   <Font size="18.0" />
                </font>
             </TextField>
-            <ChoiceBox fx:id="setSeatType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <ChoiceBox fx:id="setPaymentType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ChoiceBox fx:id="setSeatType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ChoiceBox fx:id="setPaymentType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </children>

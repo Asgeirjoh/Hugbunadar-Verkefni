@@ -52,11 +52,8 @@ public class FlightsController implements Initializable {
                                              "50000"};
     
     private ArrayList<Flight> flightList;
-    
     private ArrayList<String> airportList;
-    
     private ObservableList<String> oairportList;
-    
     private ObservableList<Flight> oFlightList;
     
     @FXML
@@ -291,7 +288,13 @@ public class FlightsController implements Initializable {
      */
     @FXML
     private void bookHandler(ActionEvent event) {
-        bookFlightController.confirmBookingShow();
+        if (results.getSelectionModel().getSelectedItem() == null) {
+            System.out.println("No flight Selected");
+        }
+        else {
+            bookFlightController.confirmBookingShow(results.getSelectionModel().getSelectedItem());
+        }
+        System.out.println(results.getSelectionModel().getSelectedItem());
     }
     
     /**
