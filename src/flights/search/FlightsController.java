@@ -5,7 +5,6 @@
  */
 package flights.search;
 
-import flights.booking.BookingController;
 import flights.database.DatabaseManager;
 
 import java.net.URL;
@@ -294,7 +293,6 @@ public class FlightsController implements Initializable {
         else {
             bookFlightController.confirmBookingShow(results.getSelectionModel().getSelectedItem());
         }
-        System.out.println(results.getSelectionModel().getSelectedItem());
     }
     
     /**

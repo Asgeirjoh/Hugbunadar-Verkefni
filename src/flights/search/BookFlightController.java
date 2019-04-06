@@ -5,6 +5,8 @@
  */
 package flights.search;
 
+import flights.booking.BookingController;
+import flights.booking.Booking;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -39,7 +41,7 @@ public class BookFlightController implements Initializable {
     public String getIdNumber;
     public String getSeatType;
     public String getPaymentType;
-    
+      
     @FXML
     private AnchorPane nDialog;
     @FXML
@@ -61,6 +63,7 @@ public class BookFlightController implements Initializable {
     
     /**
      * confirmBookingShow opens BookFlight.fxml
+     * @param flight
      */
     public void confirmBookingShow(Flight flight) {
         DialogPane p = new DialogPane();
@@ -89,11 +92,38 @@ public class BookFlightController implements Initializable {
        
         // Dialog shown
         Optional<ButtonType> outcome = d.showAndWait();
-        // get User information from UI
-        getName = setName.getText();
-        getIdNumber = setIdNumber.getText();
-        getSeatType = setSeatType.getValue();
-        getPaymentType = setPaymentType.getValue();
+        if (outcome.isPresent() && outcome.get()      
+                .getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+            
+            // get User information from UI
+            getName = setName.getText();
+            getIdNumber = setIdNumber.getText();
+            getSeatType = setSeatType.getValue();
+            getPaymentType = setPaymentType.getValue();
+            bookFlight(new Booking(
+                                             getName, 
+                                             getIdNumber, 
+                                             getPaymentType, 
+                                             flight.getFlightNumber(), 
+                                             flight.getDepartureLocation(), 
+                                             flight.getArrivalDestination(), 
+                                             flight.getDepartureTime().toString(), 
+                                             flight.getArrivalTime().toString(), 
+                                             flight.getDate().toString(), 
+                                             flight.getAirline(), 
+                                             getSeatType, 
+                                             String.valueOf(flight.getPrice())
+                )
+            );
+        }
+    }
+    
+    /**
+     * 
+     * @param booking 
+     */
+    public void bookFlight(Booking booking) {
+        System.out.println(booking);
     }
     
     /**
