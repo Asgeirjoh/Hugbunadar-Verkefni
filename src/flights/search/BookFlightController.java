@@ -31,8 +31,6 @@ public class BookFlightController implements Initializable {
 
     private final String[] paymentTypes = {"Credit Card",
                                            "Paypal"};
-    private final String[] seatTypes = {"Aisle Seat",
-                                        "Window Seat"};
 
     private ObservableList<String> opaymentTypes;
     private ObservableList<String> oseatTypes;
@@ -87,7 +85,7 @@ public class BookFlightController implements Initializable {
         d.getDialogPane().getButtonTypes().add(confirmBooking);
         
         // call optionsInit()
-        optionsInit();
+        optionsInit(flight);
        
         // Dialog shown
         Optional<ButtonType> outcome = d.showAndWait();
@@ -101,9 +99,23 @@ public class BookFlightController implements Initializable {
     /**
      * initialize UI option elements
      */
-    private void optionsInit() {
+    private void optionsInit(Flight flight) {
+        // make sure you cant pick empty seats
+        if (!(flight.getAisleSeats() > 0)) {
+            String[] seatTypes = {"Window Seat"};
+            oseatTypes = FXCollections.observableArrayList(seatTypes);
+        }
+        else if (!(flight.getWindowSeats() > 0)) {
+            String[] seatTypes = {"Aisle Seat"};
+            oseatTypes = FXCollections.observableArrayList(seatTypes);
+        }
+        else {
+            String[] seatTypes = {"Window Seat",
+                                  "Aisle Seat"};
+            oseatTypes = FXCollections.observableArrayList(seatTypes);
+            }
+        // populate the options
         opaymentTypes = FXCollections.observableArrayList(paymentTypes);
-        oseatTypes = FXCollections.observableArrayList(seatTypes);
         setPaymentType.setItems(FXCollections.observableArrayList(opaymentTypes));
         setSeatType.setItems(FXCollections.observableArrayList(oseatTypes));
         limitToNumbers(setIdNumber);
