@@ -15,8 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="800.0" stylesheets="@search.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flights.search.FlightsController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="800.0" stylesheets="@search.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flights.search.FlightsController">
    <children>
+      <fx:include fx:id="booking" source="/flights/booking/Booking.fxml" />
       <VBox prefHeight="800.0" prefWidth="800.0">
          <children>
             <MenuBar>
@@ -72,7 +73,7 @@
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="Label" />
+                              <Label text="Date range" />
                               <DatePicker fx:id="setDateMin" />
                               <DatePicker fx:id="setDateMax" />
                            </children>
@@ -90,6 +91,11 @@
                            </HBox.margin>
                         </VBox>
                         <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchHandler" text="Search" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="bookButton" mnemonicParsing="false" onAction="#bookHandler" text="Book Flight">
                            <font>
                               <Font size="18.0" />
                            </font>

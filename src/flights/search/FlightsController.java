@@ -5,6 +5,7 @@
  */
 package flights.search;
 
+import flights.booking.BookingController;
 import flights.database.DatabaseManager;
 
 import java.net.URL;
@@ -58,6 +59,8 @@ public class FlightsController implements Initializable {
     private ObservableList<Flight> oFlightList;
     
     @FXML
+    private BookingController bookingController;
+    @FXML
     private ChoiceBox<String> setDepartureLocation;
     @FXML
     private ChoiceBox<String> setArrivalLocation;
@@ -74,9 +77,9 @@ public class FlightsController implements Initializable {
     @FXML
     private Button searchButton;
     @FXML
-    private TableView<Flight> results;
-    @FXML
     private Button bookButton;
+    @FXML
+    private TableView<Flight> results;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -85,15 +88,6 @@ public class FlightsController implements Initializable {
         resultsTableInit();
         searchHandler();
         showResults();
-        
-        //flightnumber;departure;arrival;depTime;arrTime;date;airline;aisle;window;price;
-//        filters[0] = "%"; // Flight number
-//        filters[1] = "2019-06-06"; // Min date
-//        filters[2] = "2019-06-06"; // Max date
-//        filters[3] = "Reykjavik"; // Departure
-//        filters[4] = "Akureyri"; // Arrival
-//        filters[5] = "0"; // Min price
-//        filters[6] = "50000"; // Max price
     }
     
     /**
@@ -171,7 +165,7 @@ public class FlightsController implements Initializable {
     private void filtersInit() {
        limitToNumbers(setPriceMin);
        limitToNumbers(setPriceMax);
-       
+       // Fetch list of airports and set Choice boxes
        db = new DatabaseManager();
        airportList = db.fetchAirports();
        oairportList = FXCollections.observableArrayList(airportList);
@@ -283,7 +277,7 @@ public class FlightsController implements Initializable {
 
     @FXML
     private void bookHandler(ActionEvent event) {
-
+        bookingController.confirmBookingShow();
     }
     
     /**
