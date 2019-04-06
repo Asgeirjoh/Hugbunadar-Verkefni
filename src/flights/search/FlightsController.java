@@ -40,13 +40,14 @@ public class FlightsController implements Initializable {
     //Stores filter values from UI that are used in Database call. Length to be decided.
     //TODO: decide default values, and set them in initialise EDIT: maybe create a defaultFilters array, store the defaults here, create object here.
     
+    private final String wildcard = "%";
     public String[] filters = new String[7];
     //Todo: make date filters use todays date and today + week/month
-    private final String[] defaultFilters = {"%",
+    private final String[] defaultFilters = {wildcard,
                                              LocalDate.now().toString(),
                                              LocalDate.now().plusDays(7).toString(),
                                              "Reykjavik", //
-                                             "%",
+                                             "Anywhere",
                                              "0",
                                              "50000"};
     
@@ -165,9 +166,11 @@ public class FlightsController implements Initializable {
     private void filtersInit() {
        limitToNumbers(setPriceMin);
        limitToNumbers(setPriceMax);
+       
        // Fetch list of airports and set Choice boxes
        db = new DatabaseManager();
        airportList = db.fetchAirports();
+       airportList.add(0, defaultFilters[4]);
        oairportList = FXCollections.observableArrayList(airportList);
        setDepartureLocation.setItems(FXCollections.observableArrayList(oairportList));
        setArrivalLocation.setItems(FXCollections.observableArrayList(oairportList));
@@ -187,7 +190,7 @@ public class FlightsController implements Initializable {
 
         // setDepartureLocation
         setDepartureLocation.setValue(defaultFilters[3]);
-        //setArrivalLocation.setValue(defaultFilters[4]);
+        setArrivalLocation.setValue(defaultFilters[4]);
         
         // setDepartureLocation;
         // ArrivalLocation;
@@ -214,14 +217,25 @@ public class FlightsController implements Initializable {
         filters[2] = setDateMax.getValue().toString();
 
 //        filters[3], default:  "Reykjavik"; // Departure
-        if (setDepartureLocation.getValue() != null) {
-            filters[3] = setDepartureLocation.getValue().toString();
+        String setDep = setDepartureLocation.getValue();
+        if (setDep != null && !setDep.isEmpty()) {
+            if (!setDep.equals(defaultFilters[4])) {
+                filters[3] = wildcard;
+            } else {
+                filters[3] = setDep;
+            }
         } else {
             filters[3] = defaultFilters[3];
         }
+        
 //        filters[4], default:  "%"; // Arrival
-        if (setArrivalLocation.getValue() != null) {
-            filters[4] = setArrivalLocation.getValue().toString();
+        String setArr = setArrivalLocation.getValue();
+        if (setArr != null && !setArr.isEmpty()) {
+            if (!setArr.equals(defaultFilters[4])) {
+                filters[4] = wildcard;
+            } else {
+                filters[4] = setArr;
+            }
         } else {
             filters[4] = defaultFilters[4];
         }
