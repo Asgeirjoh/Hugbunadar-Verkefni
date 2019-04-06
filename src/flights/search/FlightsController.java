@@ -219,7 +219,7 @@ public class FlightsController implements Initializable {
 //        filters[3], default:  "Reykjavik"; // Departure
         String setDep = setDepartureLocation.getValue();
         if (setDep != null && !setDep.isEmpty()) {
-            if (!setDep.equals(defaultFilters[4])) {
+            if (setDep.equals(defaultFilters[4])) {
                 filters[3] = wildcard;
             } else {
                 filters[3] = setDep;
@@ -231,7 +231,7 @@ public class FlightsController implements Initializable {
 //        filters[4], default:  "%"; // Arrival
         String setArr = setArrivalLocation.getValue();
         if (setArr != null && !setArr.isEmpty()) {
-            if (!setArr.equals(defaultFilters[4])) {
+            if (setArr.equals(defaultFilters[4])) {
                 filters[4] = wildcard;
             } else {
                 filters[4] = setArr;
@@ -248,6 +248,7 @@ public class FlightsController implements Initializable {
         for (String filter : filters) {
             System.out.print(filter + ", ");
         }
+        System.out.println();
 
     }
     /**
