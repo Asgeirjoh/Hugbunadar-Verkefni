@@ -8,6 +8,8 @@ package flights.search;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -52,7 +54,8 @@ public class BookFlightController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+    
     /**
      * confirmBookingShow opens BookFlight.fxml
      */
@@ -67,7 +70,7 @@ public class BookFlightController implements Initializable {
         
         // og innihaldið sett í umgjörðina 
         d.setDialogPane(p);
-        // Haus, titill og mynd ef vill 
+        // set Title of window
         d.setTitle("Book Flight");
         
         ButtonType cancel = new ButtonType("Cancel", 
@@ -77,13 +80,37 @@ public class BookFlightController implements Initializable {
         ButtonType confirmBooking = new ButtonType("Confirm Booking", 
                 ButtonBar.ButtonData.OK_DONE);
         d.getDialogPane().getButtonTypes().add(confirmBooking);
-        
+        // call optionsInit()
+        optionsInit();
+       
+        // Dialog shown
+        Optional<ButtonType> outcome = d.showAndWait();
+    }
+    
+    /**
+     * initialize UI option elements
+     */
+    private void optionsInit() {
         opaymentTypes = FXCollections.observableArrayList(paymentTypes);
         oseatTypes = FXCollections.observableArrayList(seatTypes);
         setPaymentType.setItems(FXCollections.observableArrayList(opaymentTypes));
         setSeatType.setItems(FXCollections.observableArrayList(oseatTypes));
-       
-        // Dialog birtur
-        Optional<ButtonType> outcome = d.showAndWait();
+        limitToNumbers(setIdNumber);
+    }
+    
+    /**
+     * Prohibits any input that is not a number in text field that this is applied to.
+     * @param numberField, a text field
+     */
+    private void limitToNumbers(TextField numberField) { 
+        numberField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                    String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    numberField.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
     }
 }
