@@ -60,18 +60,18 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="name" GridPane.columnIndex="1">
+            <TextField fx:id="setName" GridPane.columnIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="idNumber" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="setIdNumber" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <ChoiceBox fx:id="seatType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <ChoiceBox fx:id="paymentType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ChoiceBox fx:id="setSeatType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ChoiceBox fx:id="setPaymentType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>

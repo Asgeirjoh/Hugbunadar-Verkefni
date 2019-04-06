@@ -8,6 +8,8 @@ package flights.search;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ButtonBar;
@@ -25,16 +27,24 @@ import javafx.scene.layout.AnchorPane;
  */
 public class BookFlightController implements Initializable {
 
+    private final String[] paymentTypes = {"Credit Card",
+                                           "Paypal"};
+    private final String[] seatTypes = {"Aisle Seat",
+                                        "Window Seat"};
+
+    private ObservableList<String> opaymentTypes;
+    private ObservableList<String> oseatTypes;
+    
     @FXML
     private AnchorPane nDialog;
     @FXML
-    private TextField name;
+    private TextField setName;
     @FXML
-    private TextField idNumber;
+    private TextField setIdNumber;
     @FXML
-    private ChoiceBox<String> seatType;
+    private ChoiceBox<String> setSeatType;
     @FXML
-    private ChoiceBox<String> paymentType;
+    private ChoiceBox<String> setPaymentType;
 
     /**
      * Initializes the controller class.
@@ -58,7 +68,7 @@ public class BookFlightController implements Initializable {
         // og innihaldið sett í umgjörðina 
         d.setDialogPane(p);
         // Haus, titill og mynd ef vill 
-        d.setTitle("Skoða dagskrárlið");
+        d.setTitle("Book Flight");
         
         ButtonType cancel = new ButtonType("Cancel", 
                 ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -67,6 +77,11 @@ public class BookFlightController implements Initializable {
         ButtonType confirmBooking = new ButtonType("Confirm Booking", 
                 ButtonBar.ButtonData.OK_DONE);
         d.getDialogPane().getButtonTypes().add(confirmBooking);
+        
+        opaymentTypes = FXCollections.observableArrayList(paymentTypes);
+        oseatTypes = FXCollections.observableArrayList(seatTypes);
+        setPaymentType.setItems(FXCollections.observableArrayList(opaymentTypes));
+        setSeatType.setItems(FXCollections.observableArrayList(oseatTypes));
        
         // Dialog birtur
         Optional<ButtonType> outcome = d.showAndWait();
