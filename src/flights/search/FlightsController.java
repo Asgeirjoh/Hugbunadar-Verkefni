@@ -5,6 +5,7 @@
  */
 package flights.search;
 
+import flights.booking.BookingController;
 import flights.database.DatabaseManager;
 
 import java.net.URL;
@@ -51,10 +52,11 @@ public class FlightsController implements Initializable {
                                              "50000"};
     
     private ArrayList<Flight> flightList;
+    private ObservableList<Flight> oFlightList;
     private ArrayList<String> airportList;
     private ObservableList<String> oairportList;
-    private ObservableList<Flight> oFlightList;
-    
+    @FXML
+    private BookingController bookingController;
     @FXML
     private BookFlightController bookFlightController;
     @FXML
@@ -77,6 +79,8 @@ public class FlightsController implements Initializable {
     private Button bookButton;
     @FXML
     private TableView<Flight> results;
+    @FXML
+    private Button bookedFlightsButton;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -266,8 +270,7 @@ public class FlightsController implements Initializable {
         //Update the observable list
         oFlightList = FXCollections.observableArrayList(flightList);
         //Display the observable list in results TableView
-        results.setItems(oFlightList);
-        
+        results.setItems(oFlightList);      
     }
  /**
   * Handles the searchButton event.
@@ -309,6 +312,11 @@ public class FlightsController implements Initializable {
                 }
             }
         });
+    }
+
+    @FXML
+    private void bookedFlightsHandler(ActionEvent event) {
+        bookingController.bookingShow();
     }
     
 }

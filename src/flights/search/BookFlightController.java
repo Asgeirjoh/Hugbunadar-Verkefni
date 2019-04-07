@@ -71,21 +71,21 @@ public class BookFlightController implements Initializable {
     public void confirmBookingShow(Flight flight) {
         DialogPane p = new DialogPane();
         nDialog.setVisible(true);
-        // Innihald sett sem Pane sem fengið er úr Scene builder 
+        // Content set as Pane from Scene builder 
         p.setContent(nDialog);
         
-        // Umgjörðin búin til - Dialog sem gefur niðurstöðu í Leikmenn klasann
+        // Frame created
         Dialog<ButtonType> d = new Dialog();
         
-        // og innihaldið sett í umgjörðina 
+        // Content put in frame 
         d.setDialogPane(p);
         // set Title of window
         d.setTitle("Book Flight");
-        
+        // set cancel button
         ButtonType cancel = new ButtonType("Cancel", 
                 ButtonBar.ButtonData.CANCEL_CLOSE);
         d.getDialogPane().getButtonTypes().add(cancel);
-        
+        // set confirm button
         ButtonType confirmBooking = new ButtonType("Confirm Booking", 
                 ButtonBar.ButtonData.OK_DONE);
         d.getDialogPane().getButtonTypes().add(confirmBooking);
