@@ -7,6 +7,7 @@ package flights.search;
 
 import flights.booking.BookingController;
 import flights.booking.Booking;
+import flights.database.DatabaseManager;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -41,6 +42,8 @@ public class BookFlightController implements Initializable {
     public String getIdNumber;
     public String getSeatType;
     public String getPaymentType;
+    
+    private DatabaseManager db;
       
     @FXML
     private AnchorPane nDialog;
@@ -123,6 +126,8 @@ public class BookFlightController implements Initializable {
      * @param booking 
      */
     public void bookFlight(Booking booking) {
+        db = new DatabaseManager();
+        db.setBooking(booking);
         System.out.println(booking);
     }
     

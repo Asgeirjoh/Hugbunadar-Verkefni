@@ -62,6 +62,18 @@ public class Booking {
     public void bookFlight() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public int getIdNumber() {
+        return idNumber;
+    }
+    
+    public String getPaymentType() {
+        return paymentType;
+    }
 
     public String getFlightNumber() {
         return flightNumber;
