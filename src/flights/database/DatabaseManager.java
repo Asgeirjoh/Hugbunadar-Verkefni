@@ -320,4 +320,108 @@ public class DatabaseManager {
         }
         return null;
     }
+    
+    /**
+     * decrement available seats by one in database table flights
+     * @param flight
+     * @param seat 
+     */
+    public void decrementSeats(Flight flight, String seat) {
+        
+        Connection connection = null;
+
+        try {
+            // create a database connection
+            connection = DriverManager.getConnection("jdbc:sqlite:.\\src\\flights\\database\\FlightDB.db");
+            Statement statement = connection.createStatement();
+            String stmt1 = null;
+            String fNumber = flight.getFlightNumber();
+            String dte = flight.getDate().toString();
+            if ("Window Seat".equals(seat)) {
+                stmt1 = "UPDATE flights " +
+                        "SET windowSeats = windowSeats - 1 " +
+                        "WHERE flightNumber = ? " +
+                        "AND date = ?";
+            }
+            else if ("Aisle Seat".equals(seat)) {
+                stmt1 = "UPDATE flights " +
+                        "SET aisleSeats = aisleSeats - 1 " +
+                        "WHERE flightNumber = ? " +
+                        "AND date = ?";
+            }
+
+            PreparedStatement p = connection.prepareStatement(stmt1);
+            p.clearParameters();
+            p.setString(1,fNumber);
+            p.setString(2,dte);
+            
+            p.executeUpdate();         
+            connection.close();
+        } catch (SQLException e) {
+            // if the error message is "out of memory", 
+            // it probably means no database file is found
+            System.err.println(e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e);
+            }
+        }
+    }
+    
+    /**
+     * iincrement available seats by one in database table flights
+     * @param flight
+     * @param seat 
+     */
+     public void incrementSeats(Booking booking) {
+        
+        Connection connection = null;
+
+        try {
+            // create a database connection
+            connection = DriverManager.getConnection("jdbc:sqlite:.\\src\\flights\\database\\FlightDB.db");
+            Statement statement = connection.createStatement();
+            String stmt1 = null;
+            String fNumber = booking.getFlightNumber();
+            String dte = booking.getDate().toString();
+            if ("Window Seat".equals(booking.getTypeofSeat())) {
+                stmt1 = "UPDATE flights " +
+                        "SET windowSeats = windowSeats + 1 " +
+                        "WHERE flightNumber = ? " +
+                        "AND date = ?";
+            }
+            else if ("Aisle Seat".equals(booking.getTypeofSeat())) {
+                stmt1 = "UPDATE flights " +
+                        "SET aisleSeats = aisleSeats + 1 " +
+                        "WHERE flightNumber = ? " +
+                        "AND date = ?";
+            }
+
+            PreparedStatement p = connection.prepareStatement(stmt1);
+            p.clearParameters();
+            p.setString(1,fNumber);
+            p.setString(2,dte);
+            
+            p.executeUpdate();         
+            connection.close();
+        } catch (SQLException e) {
+            // if the error message is "out of memory", 
+            // it probably means no database file is found
+            System.err.println(e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e);
+            }
+        }
+    }
 }

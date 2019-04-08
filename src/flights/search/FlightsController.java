@@ -295,6 +295,7 @@ public class FlightsController implements Initializable {
         }
         else {
             bookFlightController.confirmBookingShow(results.getSelectionModel().getSelectedItem());
+            showResults();
         }
     }
     

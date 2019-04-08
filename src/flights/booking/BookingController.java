@@ -162,7 +162,7 @@ public class BookingController implements Initializable {
     }
     
     /**
-     * 
+     * Refreshes the observable list the table views.
      */
     private void showResults() {
         db = new DatabaseManager();
@@ -173,6 +173,10 @@ public class BookingController implements Initializable {
         results.setItems(oBookingList);      
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML
     private void cancelBookingHandler(ActionEvent event) {
         db = new DatabaseManager();
@@ -181,6 +185,7 @@ public class BookingController implements Initializable {
         }
         else {
             db.cancelBooking(results.getSelectionModel().getSelectedItem());
+            db.incrementSeats(results.getSelectionModel().getSelectedItem());
             showResults();
         }
     }

@@ -118,6 +118,9 @@ public class BookFlightController implements Initializable {
                                              String.valueOf(flight.getPrice())
                 )
             );
+            // reserve the seat by decrementing availeble seats in flights 
+            // of type getSeatType
+            db.decrementSeats(flight, getSeatType);
         }
     }
     
@@ -125,8 +128,9 @@ public class BookFlightController implements Initializable {
      * 
      * @param booking 
      */
-    public void bookFlight(Booking booking) {
+    private void bookFlight(Booking booking) {
         db = new DatabaseManager();
+        // puts booking into bookedFlights database table
         db.setBooking(booking);
         System.out.println(booking);
     }
