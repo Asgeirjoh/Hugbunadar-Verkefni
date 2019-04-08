@@ -22,6 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 
 /**
  * FXML Controller class
@@ -37,6 +38,8 @@ public class BookingController implements Initializable {
     private DatabaseManager db;
     private ArrayList<Booking> bookingList;
     private ObservableList<Booking> oBookingList;
+    @FXML
+    private Button cancelBookingButton;
 
     /**
      * Initializes the controller class.
@@ -168,5 +171,17 @@ public class BookingController implements Initializable {
         oBookingList = FXCollections.observableArrayList(bookingList);
         //Display the observable list in results TableView
         results.setItems(oBookingList);      
+    }
+
+    @FXML
+    private void cancelBookingHandler(ActionEvent event) {
+        db = new DatabaseManager();
+        if (results.getSelectionModel().getSelectedItem() == null) {
+            System.out.println("No booking Selected");
+        }
+        else {
+            db.cancelBooking(results.getSelectionModel().getSelectedItem());
+            showResults();
+        }
     }
 }

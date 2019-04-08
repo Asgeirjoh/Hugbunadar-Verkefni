@@ -24,6 +24,10 @@ public class DatabaseManager {
     
     private String queryString;
     
+    /**
+     * insert booking into database
+     * @param booking 
+     */
     public void setBooking(Booking booking) {
         Connection connection = null;
 
@@ -138,6 +142,75 @@ public class DatabaseManager {
         return null;
     }
     
+    /**
+     * 
+     * @param booking 
+     */
+    public void cancelBooking(Booking booking){
+        Connection connection = null;
+
+        try {
+            // create a database connection
+            connection = DriverManager.getConnection("jdbc:sqlite:.\\src\\flights\\database\\FlightDB.db");
+            Statement statement = connection.createStatement();
+            
+            String n = booking.getName();
+            int idNum = booking.getIdNumber();
+            String payType = booking.getPaymentType();
+            String fNumber = booking.getFlightNumber();
+            String fDepartureLocation = booking.getDepartureLocation();
+            String fArrivalLocation = booking.getArrivalDestination();
+            String dTime = booking.getDepartureTime().toString();
+            String aTime = booking.getArrivalTime().toString();
+            String dte = booking.getDate().toString();
+            String airln = booking.getAirline();
+            String typeSeat = booking.getTypeofSeat();
+            int prc = booking.getPrice();
+            
+            String stmt1 = "DELETE FROM bookedFlights WHERE name = ? "
+                    + "AND idNumber = ? "
+                    + "AND paymentType = ? "
+                    + "AND flightNumber = ? "
+                    + "AND departureLocation = ? "
+                    + "AND arrivalDestination = ? "
+                    + "AND departureTime = ? "
+                    + "AND arrivalTime = ? "
+                    + "AND date = ? "
+                    + "AND airline = ? "
+                    + "AND typeofSeat = ? "
+                    + "AND price = ?";
+            PreparedStatement p = connection.prepareStatement(stmt1);
+            p.clearParameters();
+            p.setString(1,n);
+            p.setInt(2,idNum);
+            p.setString(3,payType);
+            p.setString(4,fNumber);
+            p.setString(5,fDepartureLocation);
+            p.setString(6,fArrivalLocation);
+            p.setString(7,dTime);
+            p.setString(8,aTime);
+            p.setString(9,dte);
+            p.setString(10,airln);
+            p.setString(11,typeSeat);
+            p.setInt(12,prc);
+            
+            p.executeUpdate();         
+            connection.close();
+        } catch (SQLException e) {
+            // if the error message is "out of memory", 
+            // it probably means no database file is found
+            System.err.println(e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e);
+            }
+        }
+    }
     public ArrayList<String> fetchAirports() {
         //Class.forName("org.sqlite.JDBC");
         Connection connection = null;
