@@ -15,27 +15,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="800.0" stylesheets="@search.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flights.search.FlightsController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="800.0" stylesheets="@search.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flights.search.FlightsController">
    <children>
       <fx:include fx:id="bookFlight" source="BookFlight.fxml" />
-      <fx:include fx:id="booking" source="/flights/booking/Booking.fxml" />
+      <fx:include fx:id="booking" source="../booking/Booking.fxml" />
       <VBox prefHeight="800.0" prefWidth="800.0">
          <children>
             <MenuBar>
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                    <MenuItem mnemonicParsing="false" onAction="#closeHandler" text="Close" />
                   </items>
                 </Menu>
               </menus>
@@ -95,16 +85,17 @@
                            <font>
                               <Font size="18.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets left="30.0" top="25.0" />
+                           </HBox.margin>
                         </Button>
-                        <Button fx:id="bookButton" mnemonicParsing="false" onAction="#bookHandler" text="Book Flight">
+                        <Button fx:id="bookedFlightsButton" mnemonicParsing="false" onAction="#bookedFlightsHandler" prefHeight="39.0" prefWidth="160.0" text="View Bookings">
                            <font>
                               <Font size="18.0" />
                            </font>
-                        </Button>
-                        <Button fx:id="bookedFlightsButton" mnemonicParsing="false" onAction="#bookedFlightsHandler" prefHeight="39.0" prefWidth="89.0" text="Users">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
+                           <HBox.margin>
+                              <Insets left="30.0" right="10.0" top="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -117,10 +108,14 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
+                  <VBox prefHeight="75.0" prefWidth="654.0" />
                   <Button fx:id="bookButton" mnemonicParsing="false" onAction="#bookHandler" text="Book Flight" textAlignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets top="15.0" />
+                     </HBox.margin>
                   </Button>
                </children>
             </HBox>

@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane id="AnchorPane" fx:id="nDialog" prefHeight="374.0" prefWidth="660.0" visible="false" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="flights.search.BookFlightController">
+<AnchorPane id="AnchorPane" fx:id="nDialog" prefHeight="374.0" prefWidth="660.0" visible="false" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="flights.search.BookFlightDialogController">
    <children>
       <GridPane layoutX="37.0" layoutY="47.0" prefHeight="294.0" prefWidth="536.0">
         <columnConstraints>

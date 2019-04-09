@@ -4,19 +4,14 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" fx:id="nDialog" prefHeight="600.0" prefWidth="800.0" visible="false" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flights.booking.BookingController">
+<AnchorPane id="AnchorPane" fx:id="nDialog" prefHeight="575.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flights.booking.BookingController">
    <children>
-      <VBox prefHeight="103.0" prefWidth="800.0">
-         <children>
-            <Button fx:id="cancelBookingButton" mnemonicParsing="false" onAction="#cancelBookingHandler" prefHeight="46.0" prefWidth="102.0" text="Cancel Booking" />
-         </children>
-      </VBox>
-      <HBox layoutY="102.0" prefHeight="497.0" prefWidth="800.0">
+      <HBox prefHeight="497.0" prefWidth="800.0">
          <children>
             <TableView fx:id="results" prefHeight="500.0" prefWidth="803.0" />
          </children>
       </HBox>
+      <Button fx:id="cancelBookingButton" layoutX="665.0" layoutY="513.0" mnemonicParsing="false" onAction="#cancelBookingHandler" prefHeight="46.0" prefWidth="102.0" text="Cancel Booking" />
    </children>
 </AnchorPane>

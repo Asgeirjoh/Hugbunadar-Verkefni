@@ -14,9 +14,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;  
 import java.time.LocalDate;
 import java.util.ArrayList;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ChoiceBox;
@@ -58,7 +58,7 @@ public class FlightsController implements Initializable {
     @FXML
     private BookingController bookingController;
     @FXML
-    private BookFlightController bookFlightController;
+    private BookFlightDialogController bookFlightController;
     @FXML
     private ChoiceBox<String> setDepartureLocation;
     @FXML
@@ -245,10 +245,11 @@ public class FlightsController implements Initializable {
 //        filters[6], default:  "50000"; // Max price
         filters[6] = setPriceMax.getText();
 
-        for (String filter : filters) {
-            System.out.print(filter + ", ");
-        }
-        System.out.println();
+        //code for debugging filters
+//        for (String filter : filters) {
+//            System.out.print(filter + ", ");
+//        }
+//        System.out.println();
 
     }
     /**
@@ -318,6 +319,17 @@ public class FlightsController implements Initializable {
     @FXML
     private void bookedFlightsHandler(ActionEvent event) {
         bookingController.bookingShow();
+    }
+    
+     /**
+     * Event handler for the Close UI component, closes the window
+     *
+     * @param event
+     */
+    @FXML
+    private void closeHandler() {
+        Platform.exit();
+        System.exit(0);
     }
     
 }
