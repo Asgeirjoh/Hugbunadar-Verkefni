@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/asgei/OneDrive/Documents/NetBeansProjects/Hugbunadar-Verkefni/src/flights/booking/Booking.fxml</file>
+            <file>file:/C:/Users/asgei/OneDrive/Documents/NetBeansProjects/Hugbunadar-Verkefni/src/flights/booking/Booking.java</file>
             <file>file:/C:/Users/asgei/OneDrive/Documents/NetBeansProjects/Hugbunadar-Verkefni/src/flights/search/FlightsController.java</file>
-            <file>file:/C:/Users/asgei/OneDrive/Documents/NetBeansProjects/Hugbunadar-Verkefni/src/flights/search/Flights.fxml</file>
             <file>file:/C:/Users/asgei/OneDrive/Documents/NetBeansProjects/Hugbunadar-Verkefni/src/flights/booking/BookingController.java</file>
+            <file>file:/C:/Users/asgei/OneDrive/Documents/NetBeansProjects/Hugbunadar-Verkefni/src/flights/database/DatabaseManager.java</file>
         </group>
     </open-files>
 </project-private>

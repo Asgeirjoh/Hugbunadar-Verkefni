@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Flights.jar" size="277430" download="eager" />
+    <jar href="Flights.jar" size="273898" download="eager" />
     <jar href="lib\sqlite-jdbc-3.18.0.jar" size="6190949" download="eager" />
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="flights.search.Flights"  name="Flights" />
