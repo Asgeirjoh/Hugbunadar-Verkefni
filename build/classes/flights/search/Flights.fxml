@@ -15,11 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="800.0" stylesheets="@search.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flights.search.FlightsController">
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="800.0" stylesheets="@search.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flights.search.FlightsController">
    <children>
       <fx:include fx:id="bookFlight" source="BookFlight.fxml" />
       <fx:include fx:id="booking" source="../booking/Booking.fxml" />
-      <VBox prefHeight="800.0" prefWidth="800.0">
+      <VBox prefHeight="650.0" prefWidth="800.0">
          <children>
             <MenuBar>
               <menus>
@@ -101,7 +101,7 @@
                   </HBox>
                </children>
             </VBox>
-            <HBox prefHeight="600.0" prefWidth="200.0">
+            <HBox prefHeight="500.0" prefWidth="200.0">
                <children>
                   <TableView fx:id="results" prefWidth="800.0" />
                </children>
@@ -114,7 +114,7 @@
                         <Font size="18.0" />
                      </font>
                      <HBox.margin>
-                        <Insets top="15.0" />
+                        <Insets bottom="10.0" top="10.0" />
                      </HBox.margin>
                   </Button>
                </children>
