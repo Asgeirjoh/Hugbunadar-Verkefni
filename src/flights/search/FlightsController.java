@@ -5,7 +5,8 @@
  */
 package flights.search;
 
-import flights.booking.BookingController;
+import flights.booking.BookFlightDialogController;
+import flights.booking.BookingsController;
 import flights.database.DatabaseManager;
 
 import java.net.URL;
@@ -56,7 +57,7 @@ public class FlightsController implements Initializable {
     private ArrayList<String> airportList;
     private ObservableList<String> oairportList;
     @FXML
-    private BookingController bookingController;
+    private BookingsController bookingController;
     @FXML
     private BookFlightDialogController bookFlightController;
     @FXML
@@ -190,9 +191,10 @@ public class FlightsController implements Initializable {
 
         // setDepartureLocation
         setDepartureLocation.setValue(defaultFilters[3]);
-        setArrivalLocation.setValue(defaultFilters[4]);
         
         // setDepartureLocation;
+        setArrivalLocation.setValue(defaultFilters[4]);
+        
         // ArrivalLocation;
         // setPriceMin;
         setPriceMin.setText(defaultFilters[5]);
