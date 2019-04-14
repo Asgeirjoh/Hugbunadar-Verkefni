@@ -25,7 +25,7 @@ public class DatabaseManager {
     private String queryString;
     
     /**
-     * insert booking into booking table
+     * insert booking into bookeFlights table
      * @param booking 
      */
     public void setBooking(Booking booking) {
@@ -87,7 +87,7 @@ public class DatabaseManager {
     }
     
     /**
-     * 
+     * Returns the contents of table bookedFlights
      * @return ArrayList<Booking> of booked flights
      */
     public ArrayList<Booking> getBookings() {
@@ -143,7 +143,7 @@ public class DatabaseManager {
     }
     
     /**
-     * 
+     * Removes a booking from the bookedFlights table
      * @param booking 
      */
     public void cancelBooking(Booking booking){
@@ -211,6 +211,11 @@ public class DatabaseManager {
             }
         }
     }
+    
+    /**
+     * Returns a list of airports that flights involve
+     * @return ArrayList<String>  of airports
+     */
     public ArrayList<String> fetchAirports() {
         //Class.forName("org.sqlite.JDBC");
         Connection connection = null;
@@ -248,7 +253,11 @@ public class DatabaseManager {
         }
         return null;
     }
-    
+    /**
+     * Returns a list of flights from table flights based on parameters
+     * @param parameters a string array that specifies the filters used
+     * @return ArrayList of flights that fit the parameters specified
+     */
     public ArrayList<Flight> filterDB(String[] parameters) {
 
         //Class.forName("org.sqlite.JDBC");
@@ -374,7 +383,7 @@ public class DatabaseManager {
     }
     
     /**
-     * iincrement available seats by one in database table flights
+     * increment available seats by one in database table flights
      * @param flight
      * @param seat 
      */

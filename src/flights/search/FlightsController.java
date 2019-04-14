@@ -54,8 +54,10 @@ public class FlightsController implements Initializable {
     
     private ArrayList<Flight> flightList;
     private ObservableList<Flight> oFlightList;
+    
     private ArrayList<String> airportList;
     private ObservableList<String> oairportList;
+    
     @FXML
     private BookingsController bookingController;
     @FXML

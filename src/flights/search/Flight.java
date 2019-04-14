@@ -53,10 +53,6 @@ public class Flight {
         
     }
     
-    public void bookFlight() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
     public String getFlightNumber() {
         return flightNumber;
     }
