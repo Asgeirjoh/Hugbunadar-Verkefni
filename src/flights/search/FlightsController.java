@@ -293,6 +293,7 @@ public class FlightsController implements Initializable {
         }
         else {
             bookFlightController.confirmBookingShow(results.getSelectionModel().getSelectedItem());
+            search(filters);
             showResults();
         }
     }
@@ -316,6 +317,8 @@ public class FlightsController implements Initializable {
     @FXML
     private void bookedFlightsHandler(ActionEvent event) {
         bookingController.bookingShow();
+        search(filters);
+        showResults();
     }
     
      /**
