@@ -281,7 +281,8 @@ public class DatabaseManager {
                     + "AND departureLocation LIKE ? "
                     + "AND arrivalDestination LIKE ? "
                     + "AND (date BETWEEN ? AND ?) "
-                    + "AND price BETWEEN ? AND ?";
+                    + "AND price BETWEEN ? AND ?"
+                    + "AND (aisleSeats != 0 OR windowSeats != 0)";
             PreparedStatement p = connection.prepareStatement(stmt1);
             p.clearParameters();
             p.setString(1,fNumber);
