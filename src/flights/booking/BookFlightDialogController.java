@@ -5,8 +5,6 @@
  */
 package flights.booking;
 
-import flights.booking.BookingsController;
-import flights.booking.Booking;
 import flights.database.DatabaseManager;
 import flights.search.Flight;
 import java.net.URL;
@@ -140,7 +138,6 @@ public class BookFlightDialogController implements Initializable {
         db = new DatabaseManager();
         // puts booking into bookedFlights database table
         db.setBooking(booking);
-        System.out.println(booking);
     }
     
     /**

@@ -59,10 +59,6 @@ public class Booking {
         
     }
     
-    public void bookFlight() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
     public String getName() {
         return name;
     }

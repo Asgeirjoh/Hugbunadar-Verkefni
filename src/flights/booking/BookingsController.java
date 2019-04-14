@@ -6,11 +6,18 @@
 package flights.booking;
 
 import flights.database.DatabaseManager;
+
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.ArrayList;
+
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+
+import javafx.event.ActionEvent;
+import javafx.collections.ObservableList;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -19,10 +26,6 @@ import javafx.scene.control.DialogPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
-import java.util.ArrayList;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 
 /**
  * FXML Controller class
@@ -181,7 +184,7 @@ public class BookingsController implements Initializable {
     private void cancelBookingHandler(ActionEvent event) {
         db = new DatabaseManager();
         if (results.getSelectionModel().getSelectedItem() == null) {
-            System.out.println("No booking Selected");
+            //do nothing
         }
         else {
             db.cancelBooking(results.getSelectionModel().getSelectedItem());

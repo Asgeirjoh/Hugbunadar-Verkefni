@@ -25,7 +25,7 @@ public class DatabaseManager {
     private String queryString;
     
     /**
-     * insert booking into database
+     * insert booking into booking table
      * @param booking 
      */
     public void setBooking(Booking booking) {

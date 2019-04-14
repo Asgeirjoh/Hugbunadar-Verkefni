@@ -247,11 +247,6 @@ public class FlightsController implements Initializable {
 //        filters[6], default:  "50000"; // Max price
         filters[6] = setPriceMax.getText();
 
-        //code for debugging filters
-//        for (String filter : filters) {
-//            System.out.print(filter + ", ");
-//        }
-//        System.out.println();
 
     }
     /**
